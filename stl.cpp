@@ -122,6 +122,7 @@ int main()
     cout << endl << endl << "stack:";
 
     // algorithms
+    cout << endl << endl << "algorithms: ";
 
     cout << endl;
 
