@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.11)
 
 set(SOURCES 
-    stl.cpp
+    source/stl.cpp
 )
 
 set(EXEC_SUBNAME
