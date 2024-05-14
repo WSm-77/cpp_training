@@ -4,9 +4,9 @@ class Array
 {
 private:
 
-    int array[10];
+    int *array;
     int arraySize;
-    
+
 public:
 
     Array(int size);
@@ -14,5 +14,6 @@ public:
 
     int& at(int index);
     int size();
+    void print_array();
 
 };
