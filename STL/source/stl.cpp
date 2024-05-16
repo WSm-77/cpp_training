@@ -14,6 +14,13 @@
 using std::cout;
 using std::endl;
 
+template <typename T>
+void print_vect(std::vector<T> &vec){
+    for (auto &a : vec){
+        cout << a << endl;
+    }
+}
+
 int main()
 {
     // array
@@ -57,6 +64,22 @@ int main()
         cout << endl << "number 6 was not found in set";
     }
 
+    if (setExample.count(4))
+    {
+        cout << "4 is already in set" << endl;
+    }
+    else{
+        cout << "ther is no 4 in set" << endl;
+    }
+
+    cout << "lets erase every element between 2 and 4..." << endl;
+    setExample.erase(setExample.find(2), setExample.find(4));
+
+    cout << "Set after erasing:"<<endl;
+    for (auto &a : setExample){
+        cout << a << endl;
+    }
+
     // vector
     cout << endl << endl << "vector: ";
 
@@ -67,18 +90,8 @@ int main()
     vectorExample.push_back(2u);    //{1, 3, 2}
     vectorExample.emplace(vectorExample.begin(), 3u);  //{3, 1, 3, 2}
     vectorExample.emplace_back(5u);
-    
-    for(auto a : vectorExample)
-    {
-        cout << endl << a;
-    }
 
-    // vectorExample.clear();
-
-    // if(vectorExample.empty())
-    // {
-    //     cout << endl << "vector is emtpy, but I'm curious what is it's last element's value: " << vectorExample.back();
-    // }
+    print_vect(vectorExample);
 
     // map
     cout << endl << endl << "map: ";
@@ -110,19 +123,53 @@ int main()
     }
 
     //queue
-    cout << endl << endl << "queue:";
+    cout << endl << endl << "queue:" << endl;
 
     std::queue<int> queueExample;
 
+    queueExample.push(4);
+    queueExample.push(2);
+    queueExample.push(1);
+    queueExample.push(7);
+
+    while (!queueExample.empty()){
+        auto firstInQueue = queueExample.front();
+        queueExample.pop();
+        cout << firstInQueue << endl;
+    }
 
     //list
     cout << endl << endl << "list:";
 
+    std::list<int> listExample;
+
     //stack
-    cout << endl << endl << "stack:";
+    cout << endl << endl << "stack:" << endl;
+
+    std::stack<double> stackExample;
+
+    stackExample.push(3.14);
+    stackExample.push(2.72);
+    stackExample.push(1.62);
+    stackExample.push(0.0);
+
+    while (!stackExample.empty()){
+        cout << stackExample.top() << endl;
+        stackExample.pop();
+    }
 
     // algorithms
-    cout << endl << endl << "algorithms: ";
+    cout << endl << endl << "algorithms: " << endl;
+
+    // sorting
+
+    cout << endl << "before sorting:" << endl;
+    print_vect(vectorExample);
+    
+    std::sort(vectorExample.begin(), vectorExample.end());
+
+    cout << endl << "after sorting:" << endl;
+    print_vect(vectorExample);
 
     cout << endl;
 

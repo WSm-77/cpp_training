@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.11)
 
+set(CXX_STANDARD 23)
+set(CXX_STANDARD_REQUIRED ON)
+
 set(SOURCES 
     source/stl.cpp
 )
