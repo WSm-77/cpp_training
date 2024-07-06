@@ -14,17 +14,18 @@
 using std::cout;
 using std::endl;
 
-template <typename T>
-void print_vect(std::vector<T> &vec){
-    for (auto &a : vec){
+template <typename structure>
+void print_structure(structure & str){
+    for (auto &a : str){
         cout << a << endl;
     }
+    cout << endl;
 }
 
 int main()
 {
     // array
-    cout << "array: ";
+    cout << "array (original): ";
 
     std::array<int,4> arrayExample = {0};
 
@@ -32,9 +33,11 @@ int main()
     {
         cout << endl << a;
 
-        //lets check if "a" is a copy or original of array cells 
+        //lets check if "a" is a copy or original of array cells
         a = 3;
     }
+
+    cout << endl << endl << "array (after changes): ";
 
     for(auto i = arrayExample.begin(); i < arrayExample.end(); i++)
     {
@@ -42,7 +45,7 @@ int main()
     }
 
     // set
-    cout << endl << endl << "set: ";
+    cout << endl << endl << "set:\n";
 
     std::set<int> setExample;
 
@@ -52,10 +55,7 @@ int main()
     setExample.emplace(2);
     setExample.emplace(1);      //there is already "1" in set, so it shouldn't be added
 
-    for(auto a : setExample)
-    {
-        cout << endl << a;
-    }
+    print_structure<std::set<int>>(setExample);
 
     auto foundInSet = setExample.find(6);
 
@@ -66,7 +66,7 @@ int main()
 
     if (setExample.count(4))
     {
-        cout << "4 is already in set" << endl;
+        cout << "\n4 is already in set" << endl;
     }
     else{
         cout << "ther is no 4 in set" << endl;
@@ -76,12 +76,11 @@ int main()
     setExample.erase(setExample.find(2), setExample.find(4));
 
     cout << "Set after erasing:"<<endl;
-    for (auto &a : setExample){
-        cout << a << endl;
-    }
+
+    print_structure(setExample);
 
     // vector
-    cout << endl << endl << "vector: ";
+    cout << endl << endl << "vector:\n";
 
     std::vector<unsigned long> vectorExample;
 
@@ -91,7 +90,7 @@ int main()
     vectorExample.emplace(vectorExample.begin(), 3u);  //{3, 1, 3, 2}
     vectorExample.emplace_back(5u);
 
-    print_vect(vectorExample);
+    print_structure(vectorExample);
 
     // map
     cout << endl << endl << "map: ";
@@ -104,14 +103,14 @@ int main()
 
     for(auto a : mapExample)
     {
-        cout << endl << "name: " << a.first << ", " << a.second << " yo"; 
+        cout << endl << "name: " << a.first << ", " << a.second << " yo";
     }
 
     // pair
     cout << endl << endl << "pair: ";
 
-    std::pair<int, bool> pairExample[] = 
-    { 
+    std::pair<int, bool> pairExample[] =
+    {
         {1, true},
         {2, true},
         {1, false}
@@ -164,14 +163,17 @@ int main()
     // sorting
 
     cout << endl << "before sorting:" << endl;
-    print_vect(vectorExample);
-    
+    print_structure(vectorExample);
+
     std::sort(vectorExample.begin(), vectorExample.end());
 
-    cout << endl << "after sorting:" << endl;
-    print_vect(vectorExample);
+    cout << endl << "after sorting (ascending):" << endl;
+    print_structure(vectorExample);
 
-    cout << endl;
+    std::sort(vectorExample.begin(), vectorExample.end(), std::greater<unsigned long>());
+
+    cout << endl << "after sorting (descending):" << endl;
+    print_structure(vectorExample);
 
     return 0;
 }
